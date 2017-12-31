@@ -7,6 +7,7 @@ set :backend, :exec
   describe file("/home/#{username}") do
     it { should be_directory }
   end
+
   describe file("/home/#{username}/.zshrc") do
     it { should be_file }
   end
