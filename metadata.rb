@@ -1,7 +1,7 @@
-name             'training-cookbook'
-maintainer       'YOUR_COMPANY_NAME'
-maintainer_email 'YOUR_EMAIL'
-license          'All rights reserved'
-description      'Installs/Configures training-cookbook'
+name 'training-cookbook'
+maintainer 'ACME_CORP'
+maintainer_email 'nickapos@oncrete.gr'
+license 'All rights reserved'
+description 'A training coobook'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.1.0'
+version '0.1.0'
