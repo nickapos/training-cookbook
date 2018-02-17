@@ -22,6 +22,7 @@ suites:
   - name: centos6
     run_list:
       - recipe[training-cookbook::install_packages]
+      - recipe[supervisor::compile_python]
       - recipe[supervisor::default]
       - recipe[training-cookbook::default]
     excludes:
