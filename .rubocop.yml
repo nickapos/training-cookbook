@@ -1,0 +1,8 @@
+AllCops:
+  TargetRubyVersion: 2.1
+  Exclude: 
+    - Thorfile
+Metrics/LineLength:
+  Max: 150
+Metrics/BlockLength:
+  Max: 200
