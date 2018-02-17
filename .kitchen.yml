@@ -8,6 +8,7 @@ provisioner:
 
 platforms:
   - name: centos-7.1
+  - name: centos-6
 
 suites:
   - name: default
@@ -15,4 +16,14 @@ suites:
       - recipe[training-cookbook::install_packages]
       - recipe[supervisor::default]
       - recipe[training-cookbook::default]
+    excludes:
+      - centos-6
+    attributes:
+  - name: centos6
+    run_list:
+      - recipe[training-cookbook::install_packages]
+      - recipe[supervisor::default]
+      - recipe[training-cookbook::default]
+    excludes:
+      - centos-7.1
     attributes:
