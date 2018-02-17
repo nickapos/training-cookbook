@@ -36,3 +36,8 @@ node['training_cookbook']['users'].each do |username|
     action :create
   end
 end
+cookbook_file "/usr/local/bin/consul" do
+  source 'consul'
+  mode "0755"
+  not_if { ::File.exists?('/usr/local/bin/consul') }
+end
