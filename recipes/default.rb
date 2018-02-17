@@ -6,12 +6,6 @@
 #
 # All rights reserved - Do Not Redistribute
 #
-node['training_cookbook']['packages'].each do |packagename|
-  log "installing #{packagename}"
-  package packagename do
-    action :install
-  end
-end
 
 node['training_cookbook']['users'].each do |username|
   home_dir = "/home/#{username}"
@@ -36,8 +30,29 @@ node['training_cookbook']['users'].each do |username|
     action :create
   end
 end
-cookbook_file "/usr/local/bin/consul" do
+cookbook_file '/usr/local/bin/consul' do
   source 'consul'
-  mode "0755"
-  not_if { ::File.exists?('/usr/local/bin/consul') }
+  mode '0755'
+  not_if { ::File.exist?('/usr/local/bin/consul') }
+end
+
+consul_user = 'consul'
+%w( data config ).each do |dir|
+  log "creating directory /opt/consul/#{dir}"
+  directory "/opt/consul/#{dir}" do
+    owner consul_user
+    group consul_user
+    mode '00755'
+    recursive true
+    action :create
+  end
+end
+
+log 'Setting up consul as a supervisord service'
+command = '/usr/local/bin/consul agent -data-dir /opt/consul/data -datacenter dc -config-dir /opt/consul/config'
+supervisor_service 'consul' do
+  action :enable
+  autostart true
+  user consul_user
+  command command
 end

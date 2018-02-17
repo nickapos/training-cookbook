@@ -3,7 +3,7 @@ require 'spec_helper'
 # Required by serverspec
 set :backend, :exec
 
-%w( user1 user2 user3 ).each do | username |
+%w( user1 user2 user3 consul ).each do |username|
   describe file("/home/#{username}") do
     it { should be_directory }
   end
@@ -15,4 +15,13 @@ set :backend, :exec
   describe user(username) do
     it { should exist }
   end
+end
+%w( data config ).each do |consuldirs|
+  describe file("/opt/consul/#{consuldirs}") do
+    it { should be_directory }
+  end
+end
+
+describe file('/usr/local/bin/consul') do
+  it { should be_file }
 end

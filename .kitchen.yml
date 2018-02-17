@@ -12,6 +12,7 @@ platforms:
 suites:
   - name: default
     run_list:
+      - recipe[training-cookbook::install_packages]
       - recipe[supervisor::default]
       - recipe[training-cookbook::default]
     attributes:

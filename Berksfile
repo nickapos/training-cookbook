@@ -1,6 +1,6 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
-source "https://supermarket.chef.io"
+source 'https://supermarket.chef.io'
 metadata
 
 cookbook 'supervisor', git: 'https://github.com/NCR-CoDE/supervisor.git', tag: 'ncrcoe-0.1.3'
